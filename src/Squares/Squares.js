@@ -13,7 +13,7 @@ class Squares extends Component {
     render() {
         const { color } = this.props;
         return (
-            <div className="row">
+            <div className="d-flex justify-content-center">
                 <Square
                     color={color}
                     selected={this.state.selected === 1}
