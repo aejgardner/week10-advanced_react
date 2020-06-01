@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from '../Buttons/Button';
+import InputField from './InputField'
 
 class Form extends Component {
     constructor(props) {
@@ -32,40 +32,30 @@ class Form extends Component {
 
     render() {
         let style = { width: 300 };
-        const { name, email } = this.state
+
         return (
             <form
                 onSubmit={this.handleSubmit}
                 className="d-flex flex-column justify-content-center align-items-center mt-4"
             >
-                <div className="form-group">
-                    <label className="font-weight-bold" htmlFor="name">Name</label>
-                    <input
-                        name="name"
-                        id="name"
-                        type="text"
-                        placeholder="Name"
-                        className="form-control"
-                        style={style}
-                        value={name}
-                        onChange={e => this.handleChange(e, "name")}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label className="font-weight-bold" htmlFor="email">Email</label>
-                    <input
-                        name="email"
-                        id="email"
-                        type="email"
-                        placeholder="Email"
-                        className="form-control"
-                        style={style}
-                        value={email}
-                        onChange={e => this.handleChange(e, "email")}
-                    />
-                </div>
-
+                <InputField
+                    labelText="Name"
+                    name="name"
+                    style={style}
+                    value={this.state.name}
+                    handleChange={e => this.handleChange(e, "name")}
+                    id="name"
+                    type="text"
+                />
+                <InputField
+                    labelText="Email"
+                    name="email"
+                    style={style}
+                    value={this.state.email}
+                    handleChange={e => this.handleChange(e, "email")}
+                    id="email"
+                    type="email"
+                />
                 <button className="btn btn-primary">Submit</button>
             </form >
         );
