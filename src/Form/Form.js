@@ -6,56 +6,48 @@ class Form extends Component {
         super(props);
 
         this.state = {
-            name: "",
-            email: ""
+            fieldvalues: props.fields.map(() => "")
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e, key) {
-        let currentValue = e.currentTarget.value;
+    handleChange(e, i) {
+        // use slice to crerate new array copy with every character typed, state needs to detect there's a change 
+        let fields = this.state.fieldvalues.slice();
 
-        this.setState({
-            [key]: currentValue
-        })
+        // specifies which index of "fieldvalues" state array we want to update the value of
+        fields[i] = e.currentTarget.value;
+
+        this.setState({ fieldvalues: fields });
     }
 
     handleSubmit(e) {
         e.preventDefault()
 
-        const { handleSubmit } = this.props;
-
-        handleSubmit(this.state)
+        this.props.handleSubmit(this.state)
     }
 
     render() {
-        let style = { width: 300 };
+        let { fields } = this.props;
 
         return (
             <form
                 onSubmit={this.handleSubmit}
-                className="d-flex flex-column justify-content-center align-items-center mt-4"
+                className="form d-flex flex-column justify-content-center align-items-center mt-4"
             >
-                <InputField
-                    labelText="Name"
-                    name="name"
-                    style={style}
-                    value={this.state.name}
-                    handleChange={e => this.handleChange(e, "name")}
-                    id="name"
-                    type="text"
-                />
-                <InputField
-                    labelText="Email"
-                    name="email"
-                    style={style}
-                    value={this.state.email}
-                    handleChange={e => this.handleChange(e, "email")}
-                    id="email"
-                    type="email"
-                />
+                {fields.map((field, i) => {
+                    return <InputField
+                        key={i}
+                        label={field.label}
+                        name={field.name}
+                        type={field.type}
+                        value={this.state.name}
+                        handleChange={e => this.handleChange(e, i)} // need the index to know which field each instance relates to
+                        id={field.name}
+                    />
+                })}
                 <button className="btn btn-primary">Submit</button>
             </form >
         );
@@ -63,3 +55,11 @@ class Form extends Component {
 }
 
 export default Form;
+
+// fields = {
+//     [
+//         { label: "Name", name: "name", type: "text" },
+//         { label: "E-mail", name: "email", type: "email" },
+//         { label: "Telephone Number", name: "telephone", type: "tel" },
+//         { label: "Date of Birth", name: "dob", type: "date" },
+//   ]}

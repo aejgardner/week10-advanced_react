@@ -7,40 +7,38 @@ class SignUp extends Component {
         super(props);
 
         this.state = {
-            value1: "",
-            value2: ""
+            password: "",
+            confirm: ""
         }
     }
 
     render() {
         const { minimumLength } = this.props
-        const { value1, value2 } = this.state;
+        const { password, confirm } = this.state;
 
-        let error = value1.length < minimumLength || value1 !== value2;
+        let error = password.length < minimumLength || password !== confirm;
 
         return (
-            <div className="d-flex flex-column align-items-center" >
+            <form className="d-flex flex-column align-items-center">
                 <Password
                     onChange={(e) => {
                         let currentValue = e.currentTarget.value;
-                        this.setState({ value1: currentValue });
+                        this.setState({ password: currentValue });
                     }}
-                    minimumLength={minimumLength}
                     label="Password"
-                    value={this.state.value1}
+                    value={this.state.password}
                     error={error}
                 />
                 <Password
                     onChange={(e) => {
                         let currentValue = e.currentTarget.value;
-                        this.setState({ value2: currentValue });
+                        this.setState({ confirm: currentValue });
                     }}
-                    minimumLength={minimumLength}
                     label="Confirm Password"
-                    value={this.state.value2}
+                    value={this.state.confirm}
                     error={error}
                 />
-            </div>
+            </form >
         );
     }
 }

@@ -1,19 +1,17 @@
 import React from 'react';
 
-const InputField = ({ name, style, value, handleChange, id, type, labelText }) => {
+const InputField = ({ name, value, handleChange, id, type, label }) => {
     return (
         <div className="form-group">
-            <label className="font-weight-bold">{labelText}
-                <input
-                    className="form-control mt-1"
-                    name={name}
-                    style={style}
-                    value={value}
-                    onChange={handleChange} // handleChange get fired with every char typed
-                    id={id}
-                    type={type}
-                />
-            </label>
+            <label htmlFor={name} className="font-weight-bold">{label}</label>
+            <input
+                className="form-control"
+                name={name}
+                value={value}
+                onChange={handleChange} // handleChange gets fired with every character typed
+                id={id}
+                type={type}
+            />
         </div>
     )
 };
