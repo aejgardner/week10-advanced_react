@@ -7,6 +7,7 @@ import Form from './Form/Form';
 // import ToDoList from './ToDoList/ToDoList';
 import Articles from './News/Articles';
 import Article from './News/Article';
+import CreateArticle from './News/CreateArticle';
 
 // react router
 import {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/articles/:id" render={({ match }) => (
             <Article article={match.params.id} />
           )} />
+          <Route exact path="/news/create" component={CreateArticle} />
           <Squares color="hotpink" />
           <SignUp minimumLength={12} />
           <Button handleUpdate={console.log} />
