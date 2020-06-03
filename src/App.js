@@ -11,7 +11,8 @@ import CreateArticle from './News/CreateArticle';
 import EditArticle from './News/EditArticle';
 import HookClicked from './Hooks/Clicked';
 import HookSquare from './Hooks/Square';
-import HookToggleText from './Hooks/Toggletext';
+import HookToggleText from './Hooks/ToggleText';
+import HookCounter from './Hooks/Counter';
 
 // react router
 import {
@@ -40,6 +41,7 @@ function App() {
             <HookClicked />
             <HookSquare colour="hotpink" />
             <HookToggleText initial="Hello" alternate="World" />
+            <HookCounter initial={50} max={100} />
           </Route>
           <Route exact path="/news" component={Articles} />
           <Route path="/articles/:id" render={({ match }) => (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Square = ({ initial, alternate }) => {
+const ToggleText = ({ initial, alternate }) => {
 
     let [toggled, setToggled] = useState(false);
 
@@ -14,4 +14,4 @@ const Square = ({ initial, alternate }) => {
     );
 };
 
-export default Square;
+export default ToggleText;
