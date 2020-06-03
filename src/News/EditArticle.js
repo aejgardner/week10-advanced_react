@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import axios from '../ajax/axios';
+// import Article from './Article';
 
-class CreateArticle extends Component {
+class EditArticle extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             title: "",
-            article: "",
+            content: "",
             tags: "",
-            saved: false
+            saved: false,
+            loaded: false
         }
 
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        let { article } = this.props
+        axios.get(`/articles/${article}`).then(({ data }) => {
+            this.setState({
+                loaded: true,
+                title: data.data.title,
+                content: data.data.content,
+                tags: data.data.tags.join(", "),
+            });
+        });
     }
 
     handleChange(e, key) {
@@ -27,32 +40,31 @@ class CreateArticle extends Component {
     handleSubmit(e) {
         e.preventDefault(); // always use this for SPAs, otherwise whole browser refreshes and users data is immediately lost
 
-        let { title, article, tags } = this.state;
+        let { title, content, tags } = this.state;
+        let { article } = this.props;
 
         let success = () => {
             this.setState({
-                saved: true,
-                title: "",
-                content: "",
-                tags: ""
+                saved: true
             });
         }
 
         // hide the saved message after 2 seconds
         setTimeout(() => this.setState({ saved: false }), 2000);
 
-        axios.post("/articles", {
+        axios.put(`/articles/${article}`, {
             title: title,
-            content: article,
+            content: content,
             tags: tags.split(", ")
         }).then(success);
     }
 
     render() {
-        let { saved, title, article, tags } = this.state;
-        return (
+        let { title, content, tags, loaded, saved } = this.state;
+
+        return !loaded ? <p>Loading...</p> : (
             <>
-                {saved ? <p className="alert alert-success">Saved!</p> : null}
+                {saved ? <p className="alert alert-success">Article updated!</p> : null}
 
                 <form onSubmit={this.handleSubmit} className="form container">
                     <div className="form-group">
@@ -66,8 +78,8 @@ class CreateArticle extends Component {
                     <div className="form-group">
                         <label className="mt-3">Article</label>
                         <input
-                            value={article}
-                            onChange={e => this.handleChange(e, "article")} className="form-control"
+                            value={content}
+                            onChange={e => this.handleChange(e, "content")} className="form-control"
                         />
                     </div>
 
@@ -79,11 +91,11 @@ class CreateArticle extends Component {
                         />
                     </div>
 
-                    <button className="btn btn-primary">Create</button>
+                    <button className="btn btn-primary">Update</button>
                 </form>
             </>
         );
     }
 }
 
-export default CreateArticle;
+export default EditArticle;

@@ -8,6 +8,7 @@ import Form from './Form/Form';
 import Articles from './News/Articles';
 import Article from './News/Article';
 import CreateArticle from './News/CreateArticle';
+import EditArticle from './News/EditArticle';
 
 // react router
 import {
@@ -24,6 +25,9 @@ function App() {
           <Route exact path="/news" component={Articles} />
           <Route path="/articles/:id" render={({ match }) => (
             <Article article={match.params.id} />
+          )} />
+          <Route path="/news/:id" render={({ match }) => (
+            <EditArticle article={match.params.id} />
           )} />
           <Route exact path="/news/create" component={CreateArticle} />
           <Squares color="hotpink" />
