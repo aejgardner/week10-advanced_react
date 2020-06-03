@@ -9,6 +9,8 @@ import Articles from './News/Articles';
 import Article from './News/Article';
 import CreateArticle from './News/CreateArticle';
 import EditArticle from './News/EditArticle';
+import HookClicked from './Hooks/Clicked';
+import HookSquare from './Hooks/Square';
 
 // react router
 import {
@@ -22,25 +24,29 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Squares color="hotpink" />
+            <SignUp minimumLength={12} />
+            <Button handleUpdate={console.log} />
+            <Form
+              handleSubmit={console.log}
+              fields={[
+                { label: "Name", name: "name", type: "text" },
+                { label: "E-mail", name: "email", type: "email" },
+                { label: "Telephone Number", name: "telephone", type: "tel" },
+                { label: "Date of Birth", name: "dob", type: "date" },
+              ]} />
+            <HookClicked />
+            <HookSquare colour="hotpink" />
+          </Route>
           <Route exact path="/news" component={Articles} />
           <Route path="/articles/:id" render={({ match }) => (
             <Article article={match.params.id} />
           )} />
+          <Route exact path="/news/create" component={CreateArticle} />
           <Route path="/news/:id" render={({ match }) => (
             <EditArticle article={match.params.id} />
           )} />
-          <Route exact path="/news/create" component={CreateArticle} />
-          <Squares color="hotpink" />
-          <SignUp minimumLength={12} />
-          <Button handleUpdate={console.log} />
-          <Form
-            handleSubmit={console.log}
-            fields={[
-              { label: "Name", name: "name", type: "text" },
-              { label: "E-mail", name: "email", type: "email" },
-              { label: "Telephone Number", name: "telephone", type: "tel" },
-              { label: "Date of Birth", name: "dob", type: "date" },
-            ]} />
           {/* <ToDoList /> */}
         </Switch>
       </Router>
