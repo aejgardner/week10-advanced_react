@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../ajax/axios';
-// import Article from './Article';
+import FourOhFour from './FourOhFour';
 
 class EditArticle extends Component {
     constructor(props) {
@@ -11,7 +11,8 @@ class EditArticle extends Component {
             content: "",
             tags: "",
             saved: false,
-            loaded: false
+            loaded: false,
+            notFound: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +26,10 @@ class EditArticle extends Component {
                 title: data.data.title,
                 content: data.data.content,
                 tags: data.data.tags.join(", "),
+            })
+        }).catch(error => {
+            this.setState({
+                notFound: true
             });
         });
     }
@@ -60,9 +65,9 @@ class EditArticle extends Component {
     }
 
     render() {
-        let { title, content, tags, loaded, saved } = this.state;
+        let { title, content, tags, loaded, saved, notFound } = this.state;
 
-        return !loaded ? <p>Loading...</p> : (
+        return notFound ? <FourOhFour /> : (!loaded ? <p>Loading...</p> : (
             <>
                 {saved ? <p className="alert alert-success">Article updated!</p> : null}
 
@@ -94,7 +99,7 @@ class EditArticle extends Component {
                     <button className="btn btn-primary">Update</button>
                 </form>
             </>
-        );
+        ));
     }
 }
 

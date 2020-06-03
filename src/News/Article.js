@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from '../ajax/axios';
 import Comments from './Comments';
 import CreateComment from './CreateComment';
+import FourOhFour from './FourOhFour';
 
 class Article extends Component {
     constructor(props) {
@@ -9,7 +10,8 @@ class Article extends Component {
 
         this.state = {
             loaded: false,
-            article: {}
+            article: {},
+            notFound: false
         }
     }
 
@@ -20,13 +22,17 @@ class Article extends Component {
                 loaded: true,
                 article: data.data
             });
+        }).catch(error => {
+            this.setState({
+                notFound: true
+            });
         });
     }
 
     render() {
-        let { article, loaded } = this.state;
+        let { article, loaded, notFound } = this.state;
 
-        return !loaded ? <p>Loading...</p> : (
+        return notFound ? <FourOhFour /> : (!loaded ? <p>Loading...</p> : (
             <>
                 <h2>{article.title}</h2>
                 <p>{article.content}</p>
@@ -45,6 +51,7 @@ class Article extends Component {
                 <Comments articleID={article.id} />
                 <CreateComment articleID={article.id} />
             </>
+        )
         );
     }
 }
