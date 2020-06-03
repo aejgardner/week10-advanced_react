@@ -6,6 +6,7 @@ import Button from './Buttons/Button';
 import Form from './Form/Form';
 // import ToDoList from './ToDoList/ToDoList';
 import Articles from './News/Articles';
+import Article from './News/Article';
 
 // react router
 import {
@@ -20,6 +21,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/news" component={Articles} />
+          <Route path="/articles/:id" render={({ match }) => (
+            <Article article={match.params.id} />
+          )} />
           <Squares color="hotpink" />
           <SignUp minimumLength={12} />
           <Button handleUpdate={console.log} />

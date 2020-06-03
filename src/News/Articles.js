@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../ajax/axios';
+import { Link } from "react-router-dom";
 
 class Articles extends Component {
     constructor(props) {
@@ -27,12 +28,15 @@ class Articles extends Component {
             <>
                 <h2>Articles</h2>
                 <ul className="list-group">
-                    {articles.map(article => (
+                    {articles.map((article) => (
                         <li className="list-group-item" key={article.id}>
-                            {article.title}
+                            <Link to={`/articles/${article.id}`}>
+                                {article.title}
+                            </Link>
                         </li>
                     ))}
                 </ul>
+
             </>
         );
     }
