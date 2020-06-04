@@ -44,7 +44,7 @@ class Article extends Component {
                                 cursor: "pointer"
                             }}
                             key={i}
-                            className="mr-2">{tag}
+                            className="mr-2 badge badge-primary">{tag}
                         </li>
                     ))}
                 </ul>

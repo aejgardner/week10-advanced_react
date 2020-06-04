@@ -1,43 +1,62 @@
-// import React, { Component } from 'react';
-// import Input from './Input';
+import React, { Component } from 'react';
+import Input from './Input';
+import List from './List';
 
-// class ToDoList extends Component {
+class ToDoList extends Component {
 
-//     constructor(props) {
-//         super(props);
+    constructor(props) {
+        super(props);
 
-//         this.state = {
-//             input: "",
-//             items: []
-//         }
-//     }
+        this.state = {
+            input: "",
+            items: ["Make bed", "Learn React"]
+        }
 
-//     handleChange(e) {
-//         let currentValue = e.currentTarget.value
+        this.handleChange = this.handleChange.bind(this);
+        this.addTodo = this.addTodo.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
 
-//         this.setState({ input: currentValue })
-//     }
+    handleChange(e) {
+        let currentValue = e.currentTarget.value
 
-//     addTodo() {
+        this.setState({ input: currentValue })
+    }
 
-//         this.setState({
-//             items: [...items, input]
-//         })
-//     }
+    addTodo() {
+        let { items, input } = this.state;
 
-//     render() {
+        this.setState({
+            items: [...items, input],
+            input: ""
+        })
+    }
 
-//         return (
-//             <>
-//                 <Input
-//                     handleChange={this.handleChange}
-//                     addTodo={this.addTodo}
-//                     value={input}
-//                 />
-//                 <List
-//             </>
-//             );
-//         }
-//     }
+    handleDelete(i) {
+        let { items } = this.state
 
-// export default ToDoList;
+        console.log(i)
+
+        this.setState({
+            items: items.filter(item => {
+                return item !== items[i]
+            })
+        })
+    }
+
+    render() {
+        let { items, input } = this.state;
+        return (
+            <div className="container mt-5 d-flex flex-column align-items-center" style={{ width: "20rem" }}>
+                <Input
+                    handleChange={this.handleChange}
+                    addTodo={this.addTodo}
+                    value={input}
+                />
+                <List items={items} handleDelete={(i) => this.handleDelete(i)} />
+            </div>
+        );
+    }
+}
+
+export default ToDoList;

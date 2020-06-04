@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 
-const Counter = ({ initial, max }) => {
+const Counter = ({ step, max }) => {
 
-    let [counter, setCounter] = useState(initial);
+    let [counter, setCounter] = useState(0);
+
+    let nextStepUp = counter + step;
+    let nextStepDown = counter - step;
 
     const increaseCounter = () => {
-        setCounter(counter < max ? counter + 1 : counter = max)
+        setCounter(nextStepUp > max ? counter = max : nextStepUp)
     };
 
     const decreaseCounter = () => {
-        setCounter(counter > 0 ? counter - 1 : counter = 0)
+        setCounter(nextStepDown < 0 ? counter = 0 : nextStepDown)
     };
 
     return (
         <>
-            <h2 className="mt-4">Counter</h2>
+            <h2 className="mt-4">StepCounter</h2>
             <div className="d-flex justify-content-center align-items-center">
                 <button className="btn btn-danger" onClick={decreaseCounter}>-</button>
                 <p style={{ fontSize: 40 }} className="mr-4 ml-4" >{counter}</p>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../ajax/axios';
 import FourOhFour from './FourOhFour';
+import { formClass } from '../utilities';
 
 class EditArticle extends Component {
     constructor(props) {
@@ -71,7 +72,11 @@ class EditArticle extends Component {
             <>
                 {saved ? <p className="alert alert-success">Article updated!</p> : null}
 
-                <form onSubmit={this.handleSubmit} className="form container">
+                <form
+                    onSubmit={this.handleSubmit}
+                    className={formClass}
+                    style={{ width: "30rem" }}
+                >
                     <div className="form-group">
                         <label className="mt-3">Title</label>
                         <input

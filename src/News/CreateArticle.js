@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../ajax/axios';
+import { formClass } from '../utilities';
 
 class CreateArticle extends Component {
     constructor(props) {
@@ -7,12 +8,12 @@ class CreateArticle extends Component {
 
         this.state = {
             title: "",
-            article: "",
+            content: "",
             tags: "",
             saved: false
         }
 
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this); - method does NOT have to be bound if you are calling it from an anonymous function, which is what you are doing for this method in your JSX. If JAVASCRIPT calls the method and not you, it gets bound to the global scope so you need to do the binding yourself
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -27,7 +28,7 @@ class CreateArticle extends Component {
     handleSubmit(e) {
         e.preventDefault(); // always use this for SPAs, otherwise whole browser refreshes and users data is immediately lost
 
-        let { title, article, tags } = this.state;
+        let { title, content, tags } = this.state;
 
         let success = () => {
             this.setState({
@@ -41,20 +42,25 @@ class CreateArticle extends Component {
         // hide the saved message after 2 seconds
         setTimeout(() => this.setState({ saved: false }), 2000);
 
+        // post the current state to API, then pass success function above to reset the state
         axios.post("/articles", {
             title: title,
-            content: article,
+            content: content,
             tags: tags.split(", ")
         }).then(success);
     }
 
     render() {
-        let { saved, title, article, tags } = this.state;
+        let { saved, title, content, tags } = this.state;
         return (
             <>
                 {saved ? <p className="alert alert-success">Saved!</p> : null}
 
-                <form onSubmit={this.handleSubmit} className="form container">
+                <form
+                    onSubmit={this.handleSubmit}
+                    className={formClass}
+                    style={{ width: "30rem" }}
+                >
                     <div className="form-group">
                         <label className="mt-3">Title</label>
                         <input
@@ -66,8 +72,8 @@ class CreateArticle extends Component {
                     <div className="form-group">
                         <label className="mt-3">Article</label>
                         <input
-                            value={article}
-                            onChange={e => this.handleChange(e, "article")} className="form-control"
+                            value={content}
+                            onChange={e => this.handleChange(e, "content")} className="form-control"
                         />
                     </div>
 
@@ -79,7 +85,7 @@ class CreateArticle extends Component {
                         />
                     </div>
 
-                    <button className="btn btn-primary">Create</button>
+                    <button className="btn btn-primary mb-4">Create</button>
                 </form>
             </>
         );
