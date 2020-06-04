@@ -22,6 +22,7 @@ import HookPasswordStrength from './Hooks/PasswordStrength';
 
 // reducer components
 import ReducerClicked from './Reducers/Clicked'
+import ReducerStepCounter from './Reducers/StepCounter'
 
 // react router
 import {
@@ -63,7 +64,11 @@ function App() {
 
           <Route exact path="/reducers">
             <ReducerClicked />
+            <ReducerStepCounter max={100} step={5} />
+          </Route>
 
+          <Route exact path="/reducer-todo-list" >
+            <ReducerTodoList />
           </Route>
 
           <Route exact path="/todo-list" component={ToDoList} />
