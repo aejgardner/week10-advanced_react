@@ -17,6 +17,8 @@ import HookToggleText from './Hooks/ToggleText';
 import HookCounter from './Hooks/Counter';
 import HookStepCounter from './Hooks/StepCounter';
 import HookCatchMeIfYouCan from './Hooks/CatchMeIfYouCan';
+import HookRollCall from './Hooks/RollCall';
+import HookPasswordStrength from './Hooks/PasswordStrength';
 
 // react router
 import {
@@ -24,6 +26,9 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+
+// names for HookRollCall component
+let names = ["James P. Sullivan", "Mike Wazowski", "Boo", "Randall Boggs", "Roz", "Fungus"];
 
 function App() {
   return (
@@ -48,6 +53,8 @@ function App() {
             <HookCounter initial={50} max={100} />
             <HookStepCounter max={100} step={30} />
             <HookCatchMeIfYouCan jump={100} />
+            <HookRollCall names={names} />
+            <HookPasswordStrength />
           </Route>
           <Route exact path="/todo-list" component={ToDoList} />
           <Route exact path="/news" component={Articles} />

@@ -6,9 +6,11 @@ const CatchMeIfYouCan = ({ jump }) => {
 
     const moveDownScreen = () => setDistanceFromTop(distanceFromTop + jump);
 
+    let style = { position: "absolute", top: distanceFromTop, left: "10rem" }
+
     return (
         <button
-            style={{ position: "absolute", top: distanceFromTop, left: "20rem" }}
+            style={style}
             className="btn btn-success"
             onClick={moveDownScreen} >CatchMeIfYouCan
         </button >

@@ -1,1 +1,1 @@
-export const formClass = "form container border corder-secondary rounded mt-4 p-4";
+export const formClass = "form container border border-secondary rounded mt-4 p-4";
