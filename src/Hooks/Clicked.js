@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 const Clicked = () => {
 
-    let [clicked, setClicked] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
-    let update = () => setClicked(true);
+    const update = () => setClicked(true);
 
     return (
         <>
@@ -13,8 +13,7 @@ const Clicked = () => {
                 style={{ cursor: "pointer" }}
                 className="alert alert-primary mt-4 container"
                 onClick={update}
-            >
-                {!clicked ? "Not Clicked" : "Clicked"}
+            >{!clicked ? "Not Clicked" : "Clicked"}
             </p>
         </>
     );

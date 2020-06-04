@@ -6,7 +6,7 @@ const RollCall = () => {
 
     const handleChange = (e) => setInput(e.currentTarget.value);
 
-    let colour = "white";
+    let colour = "";
 
     if (input.length >= 1 && input.length < 9) {
         colour = "red"

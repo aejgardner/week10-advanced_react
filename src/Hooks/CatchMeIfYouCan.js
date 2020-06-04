@@ -4,7 +4,7 @@ const CatchMeIfYouCan = ({ jump }) => {
 
     let [distanceFromTop, setDistanceFromTop] = useState(0);
 
-    const moveDownScreen = () => setDistanceFromTop(distanceFromTop + jump);
+    const handleJump = () => setDistanceFromTop(distanceFromTop + jump);
 
     let style = { position: "absolute", top: distanceFromTop, left: "10rem" }
 
@@ -12,7 +12,7 @@ const CatchMeIfYouCan = ({ jump }) => {
         <button
             style={style}
             className="btn btn-success"
-            onClick={moveDownScreen} >CatchMeIfYouCan
+            onClick={handleJump} >CatchMeIfYouCan
         </button >
     );
 };

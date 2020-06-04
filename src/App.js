@@ -20,6 +20,9 @@ import HookCatchMeIfYouCan from './Hooks/CatchMeIfYouCan';
 import HookRollCall from './Hooks/RollCall';
 import HookPasswordStrength from './Hooks/PasswordStrength';
 
+// reducer components
+import ReducerClicked from './Reducers/Clicked'
+
 // react router
 import {
   BrowserRouter as Router,
@@ -35,6 +38,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+
           <Route exact path="/">
             <Squares color="hotpink" />
             <SignUp minimumLength={12} />
@@ -56,6 +60,12 @@ function App() {
             <HookRollCall names={names} />
             <HookPasswordStrength />
           </Route>
+
+          <Route exact path="/reducers">
+            <ReducerClicked />
+
+          </Route>
+
           <Route exact path="/todo-list" component={ToDoList} />
           <Route exact path="/news" component={Articles} />
           <Route path="/articles/:id" render={({ match }) => (
@@ -65,6 +75,7 @@ function App() {
           <Route path="/news/:id" render={({ match }) => (
             <EditArticle article={match.params.id} />
           )} />
+
         </Switch>
       </Router>
     </div>
