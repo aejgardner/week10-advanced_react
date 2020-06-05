@@ -114,6 +114,11 @@ it('completes items', () => {
 
     // expected completed to be true
     expect(completed.items[1]).toEqual({ task: "Mum", completed: true });
+
+    // As always, check we're getting back a new object:
+
+    // check that it's not the same object being returned
+    expect(completed.items[1]).not.toBe(many.items[1]);
 });
 
 it('reduces', () => {
