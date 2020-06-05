@@ -1,5 +1,3 @@
-// If we pass in a value property, we get back a version of the state with an items array containing a task that has not been completed:
-
 export const addItem = (state, { value }) => {
     state = {
         ...state,
@@ -9,6 +7,17 @@ export const addItem = (state, { value }) => {
             completed: false
         }
         ]
+    }
+
+    return state;
+};
+
+export const removeItem = (state, { index }) => {
+    state = {
+        ...state,
+        items: state.items.filter(item => {
+            return item !== state.items[index];
+        })
     }
 
     return state;
