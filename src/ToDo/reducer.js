@@ -53,3 +53,9 @@ export const completeItem = (state, { index }) => {
         items: items
     }
 };
+
+export default (state, action) => {
+    switch (action.type) {
+        default: return state;
+    }
+};

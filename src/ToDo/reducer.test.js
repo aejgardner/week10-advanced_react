@@ -130,5 +130,11 @@ it('completes items', () => {
 });
 
 it('reduces', () => {
-    // Reducer tests here
+    // It should return the state as it was if the action type isn't recognised:
+
+    // pass in a nonsense action
+    let newState = reducer(initialState, { type: "GOTTA_CATCH_EM_ALL" });
+
+    // get back initial state
+    expect(newState).toBe(initialState);
 });
