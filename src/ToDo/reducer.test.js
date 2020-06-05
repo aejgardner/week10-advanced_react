@@ -61,6 +61,14 @@ it('removes items', () => {
 
     // should be 5 items, not 6
     expect(removed.items.length).toBe(5);
+
+    // Remove another item and make sure it still works:
+
+    // use the previously pruned array
+    removed = removeItem(removed, { index: 2 });
+
+    // check that the right task is now in index 2
+    expect(removed.items[2]).toEqual({ task: "You", completed: false });
 });
 
 it('updates items', () => {
