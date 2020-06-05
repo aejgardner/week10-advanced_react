@@ -51,6 +51,11 @@ it('removes items', () => {
 
     // "Hello" should be gone, so should get back "Mum" task
     expect(removed.items[0]).toEqual({ task: "Mum", completed: false });
+
+    // Make sure we're not getting the original array back:
+
+    // check that it's not the same object being returned
+    expect(removed.items).not.toBe(many.items);
 });
 
 it('updates items', () => {
