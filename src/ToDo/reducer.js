@@ -57,7 +57,7 @@ export const completeItem = (state, { index }) => {
 export default (state, action) => {
     switch (action.type) {
         case "NEW_ITEM": return addItem(state, action);
-        case "REMOVE_ITEM": return addItem(state, action);
+        case "REMOVE_ITEM": return removeItem(state, action);
         default: return state;
     }
 };
