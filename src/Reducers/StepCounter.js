@@ -12,7 +12,7 @@ const StepCounter = ({ max, step }) => {
         };
     }
 
-    const decreaseCounter = () => {
+    const decreaseCounter = state => {
         let nextStepDown = state.counter - step;
         return {
             ...state,
@@ -22,7 +22,7 @@ const StepCounter = ({ max, step }) => {
 
     const reducer = (state, action) => {
         switch (action.type) {
-            case "INCREMENT": return increaseCounter(state)
+            case "INCREMENT": return increaseCounter(state);
             case "DECREMENT": return decreaseCounter(state)
             default: return state;
         }

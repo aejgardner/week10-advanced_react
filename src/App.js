@@ -67,9 +67,9 @@ function App() {
             <ReducerStepCounter max={100} step={5} />
           </Route>
 
-          <Route exact path="/reducer-todo-list" >
+          {/* <Route exact path="/reducer-todo-list" >
             <ReducerTodoList />
-          </Route>
+          </Route> */}
 
           <Route exact path="/todo-list" component={ToDoList} />
           <Route exact path="/news" component={Articles} />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from './Input';
 import List from './List';
+import ListItem from './ListItem';
 
 class ToDoList extends Component {
 
@@ -25,6 +26,8 @@ class ToDoList extends Component {
 
     addTodo() {
         let { items, input } = this.state;
+
+        console.log(items)
 
         this.setState({
             items: [...items, input],
@@ -53,7 +56,12 @@ class ToDoList extends Component {
                     addTodo={this.addTodo}
                     value={input}
                 />
-                <List items={items} handleDelete={(i) => this.handleDelete(i)} />
+                <List>
+                    {items.map((item, i) => (
+                        <ListItem item={item} key={i} handleDelete={() => this.handleDelete(i)} />
+                    ))}
+                </List>
+
             </div>
         );
     }
