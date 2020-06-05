@@ -160,4 +160,25 @@ it('reduces', () => {
 
     // check index 3 has moved down to index 2
     expect(newState.items[2]).toEqual({ task: "Are", completed: false });
+
+    /*
+     * Change item
+     */
+
+    // update item at index 1
+    newState = reducer(newState, { type: "CHANGE_ITEM", index: 1, value: "Dad" });
+
+    // check it's been changed
+    expect(newState.items[1]).toEqual({ task: "Dad", completed: false });
+
+
+    /*
+     * Complete item
+     */
+
+    // mark index 1 as completed
+    newState = reducer(newState, { type: "MARK_COMPLETED", index: 1 });
+
+    // check it's been updated
+    expect(newState.items[1]).toEqual({ task: "Dad", completed: true });
 });
