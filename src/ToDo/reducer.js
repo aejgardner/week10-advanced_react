@@ -38,5 +38,18 @@ export const updateItem = (state, { index, value }) => {
         ...state,
         items: items
     }
+};
 
+export const completeItem = (state, { index }) => {
+    let items = [...state.items];
+
+    items[index] = {
+        ...state.items[index],
+        completed: true
+    }
+
+    return {
+        ...state,
+        items: items
+    }
 };
