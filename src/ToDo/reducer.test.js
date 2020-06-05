@@ -137,4 +137,12 @@ it('reduces', () => {
 
     // get back initial state
     expect(newState).toBe(initialState);
+
+    // If the action type is NEW_ITEM it should add an item:
+
+    // use the NEW_ITEM action, passing a value
+    newState = reducer(initialState, { type: "NEW_ITEM", value: "Hello" });
+
+    // make sure it's been added
+    expect(newState.items[0]).toEqual({ task: "Hello", completed: false });
 });
