@@ -119,6 +119,14 @@ it('completes items', () => {
 
     // check that it's not the same object being returned
     expect(completed.items[1]).not.toBe(many.items[1]);
+
+    // Check completing an item doesn't affect an already completed item:
+
+    // complete item at index 0
+    completed = completeItem(many, { index: 0 });
+
+    // should still be marked as completed
+    expect(completed.items[0]).toEqual({ task: "Hello", completed: true });
 });
 
 it('reduces', () => {
