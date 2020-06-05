@@ -5,7 +5,7 @@ export const addItem = (state, { value }) => {
         ...state,
         items: [...state.items,
         {
-            task: "Hello",
+            task: value,
             completed: false
         }
         ]
