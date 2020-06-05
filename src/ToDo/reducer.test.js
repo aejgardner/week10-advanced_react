@@ -86,6 +86,11 @@ it('updates items', () => {
 
     // should have updated the task property
     expect(updated.items[1]).toEqual({ task: "Dad", completed: false });
+
+    // Make sure we're getting back a different object:
+
+    // check that it's not the same object being returned
+    expect(updated.items[1]).not.toBe(many.items[1]);
 });
 
 it('completes items', () => {
